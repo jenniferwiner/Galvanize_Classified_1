@@ -2,8 +2,13 @@
 
 module.exports = {
 
-  development: { },
-  test: { },
-  production: { },
-
-};
+  development: {
+    client: 'pg',
+    connection: 'postgres://localhost/gClassified_dev'
+  },
+  test: {
+    client: 'pg',
+    connection: 'postgres://localhost/gClassified_test'
+  },
+  production: { }
+}
