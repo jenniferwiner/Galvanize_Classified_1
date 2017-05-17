@@ -1,34 +1,32 @@
-'use strict';
+'use strict'
 
-process.env.NODE_ENV = 'test';
+process.env.NODE_ENV = 'test'
 
-
-const { suite, test } = require('mocha');
-const request = require('supertest');
-const knex = require('../knex');
-const server = require('../server');
+const { suite, test } = require('mocha')
+const request = require('supertest')
+const knex = require('../knex')
+const server = require('../server')
 
 suite('Part 3: CRUD routes for classifieds resource should be created.', () => {
-
   before((done) => {
-  knex.migrate.latest()
-    .then(() => {
-      done();
-    })
-    .catch((err) => {
-      done(err);
-    });
-  });
+    knex.migrate.latest()
+      .then(() => {
+        done()
+      })
+      .catch((err) => {
+        done(err)
+      })
+  })
 
   beforeEach((done) => {
     knex.seed.run()
       .then(() => {
-        done();
+        done()
       })
       .catch((err) => {
-        done(err);
-      });
-  });
+        done(err)
+      })
+  })
 
   test('GET /classifieds should return the id,title, description, price and item_image of all classifieds.', (done) => {
     /* eslint-disable max-len */
@@ -37,11 +35,11 @@ suite('Part 3: CRUD routes for classifieds resource should be created.', () => {
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, [{
-          id:1,
-          title:'NES Classic',
-          description:'I got lucky and found it, and decided to charge 10x what it was worth.',
-          price:600,
-          item_image:'http://www.nintendo.com/images/page/nes-classic/nes-classic-edition-box.png'
+          id: 1,
+          title: 'NES Classic',
+          description: 'I got lucky and found it, and decided to charge 10x what it was worth.',
+          price: 600,
+          item_image: 'http://www.nintendo.com/images/page/nes-classic/nes-classic-edition-box.png'
         },{
           id:2,
           title:'Pikachu 9" Plush Stuffed Toy',
